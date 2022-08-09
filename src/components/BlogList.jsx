@@ -3,7 +3,7 @@ import Pagination from "./Pagination";
 import React from "react";
 import blogs from "../data/blogs.json";
 //-----imported useState.
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const PAGE_SIZES = [15, 25, 50, 100];
 
@@ -19,11 +19,11 @@ function BlogList() {
   const currentPaginationData = blogs.posts.slice(startSlice, endSlice);
   //-----defining if next and previous buttons are disabled.
   const isOnlyOnePage = blogs.posts.length <= pageSize;
-  const isLastPage =
-    startSlice <= blogs.posts.length && endSlice >= blogs.posts.length;
+  const isLastPage = startSlice <= blogs.posts.length && endSlice >= blogs.posts.length;
   const isFirstPage = startSlice == 0;
   const isNextDisabled = isLastPage || isOnlyOnePage;
   const isPreviousDisabled = isFirstPage || isOnlyOnePage;
+
   //-----function for updating page size.
   const updateRowsPerPage = (newPageSize) => {
     setPageSize(newPageSize);
