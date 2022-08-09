@@ -1,5 +1,4 @@
 import "../css/pagination.scss";
-
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import usePagination, { DOTS } from "../hooks/usePagination";
 
@@ -15,7 +14,7 @@ function Pagination({
   pageSize,
   pageSizeOptions,
   isNextDisabled,
-  isPreviousDisabled
+  isPreviousDisabled,
 }) {
 
   const paginationRange = usePagination({
@@ -99,8 +98,7 @@ function Pagination({
         aria-label="Select page size"
         value={pageSize}
         onChange={(e) => {
-          //-----added unary plus operator to 'e' so we can use it as a number.
-          onPageSizeOptionChange(+e.target.value);
+          onPageSizeOptionChange(e.target.value);
         }}
       >
         {pageSizeOptions.map((size) => (
