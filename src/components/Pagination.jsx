@@ -14,8 +14,6 @@ function Pagination({
   currentPage,
   pageSize,
   pageSizeOptions,
-  isNextDisabled,
-  isPreviousDisabled
 }) {
   const paginationRange = usePagination({
     currentPage,
@@ -44,7 +42,7 @@ function Pagination({
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto previous page"
           onClick={onPrevious}
-          disabled={isPreviousDisabled} // change this line to disable a button.
+          disabled={false} // change this line to disable a button.
         >
           <ChevronLeftIcon />
         </button>
@@ -72,8 +70,6 @@ function Pagination({
               // Do not remove the aria-label below, it is used for Hatchways automation.
               aria-label={`Goto page ${pageNumber}`}
               onClick={() => onPageChange(pageNumber)}
-              //-----adding disabled to current page for my own clarity, even though its not officially on the github issue.
-              disabled={currentPage === pageNumber}
             >
               {pageNumber}
             </button>
@@ -88,7 +84,7 @@ function Pagination({
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto next page"
           onClick={onNext}
-          disabled={isNextDisabled} // change this line to disable a button.
+          disabled={false} // change this line to disable a button.
         >
           <ChevronRightIcon />
         </button>
@@ -100,8 +96,7 @@ function Pagination({
         aria-label="Select page size"
         value={pageSize}
         onChange={(e) => {
-          //-----added unary plus operator to 'e' so we can use it as a number.
-          onPageSizeOptionChange(+e.target.value);
+          onPageSizeOptionChange(e.target.value);
         }}
       >
         {pageSizeOptions.map((size) => (

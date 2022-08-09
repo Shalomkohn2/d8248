@@ -2,50 +2,24 @@ import BlogPost from "./BlogPost";
 import Pagination from "./Pagination";
 import React from "react";
 import blogs from "../data/blogs.json";
-//-----imported useState.
-import { useState } from "react";
 
 const PAGE_SIZES = [15, 25, 50, 100];
 
 function BlogList() {
-  //-----putting page size into its own state.
-  const [pageSize, setPageSize] = useState(15);
-  //-----putting current page into its own state.
-  const [currentPageNumber, setCurrentPageNumber] = useState(1);
-  //-----declaring start and end of currentPaginationData slice;
-  const startSlice = pageSize * currentPageNumber - pageSize;
-  const endSlice = pageSize * currentPageNumber;
-  //-----changed hard coded slice (0, 15) to variables.
-  const currentPaginationData = blogs.posts.slice(startSlice, endSlice);
-  //-----defining if next and previous buttons are disabled.
-  const isOnlyOnePage = blogs.posts.length <= pageSize;
-  const isLastPage = startSlice <= blogs.posts.length && endSlice >= blogs.posts.length;
-  const isFirstPage = startSlice == 0;
-  const isNextDisabled = isLastPage || isOnlyOnePage;
-  const isPreviousDisabled = isFirstPage || isOnlyOnePage;
-  //-----function for updating page size.
-  const updateRowsPerPage = (newPageSize) => {
-    setPageSize(newPageSize);
-    setCurrentPageNumber(1);
-  };
-  //-----function for updating page number.
-  const updatePage = (nextPageNumber) => {
-    setCurrentPageNumber(nextPageNumber);
-  }; 
+  const currentPaginationData = blogs.posts.slice(0, 15);
+
+  const updateRowsPerPage = () => {};
+  const updatePage = () => {};
 
   return (
     <div>
       <Pagination
-        //-----changed the hard coded current page (1) to currentPage state variable.
-        currentPage={currentPageNumber}
+        currentPage={1}
         totalCount={blogs.posts.length}
-        //-----changed the hard coded page size(15) to pageSize state variable.
-        pageSize={pageSize}
+        pageSize={15}
         pageSizeOptions={PAGE_SIZES}
         onPageChange={updatePage}
         onPageSizeOptionChange={updateRowsPerPage}
-        isNextDisabled={isNextDisabled}
-        isPreviousDisabled={isPreviousDisabled}
       />
       <ul
         // Do not remove the aria-label below, it is used for Hatchways automation.
