@@ -2,8 +2,6 @@ import BlogPost from "./BlogPost";
 import Pagination from "./Pagination";
 import React from "react";
 import blogs from "../data/blogs.json";
-//-----imported useState.
-import { useState } from "react";
 
 const PAGE_SIZES = [15, 25, 50, 100];
 
@@ -37,16 +35,12 @@ function BlogList() {
   return (
     <div>
       <Pagination
-        //-----changed the hard coded current page (1) to currentPage state variable.
-        currentPage={currentPageNumber}
+        currentPage={1}
         totalCount={blogs.posts.length}
-        //-----changed the hard coded page size(15) to pageSize state variable.
-        pageSize={pageSize}
+        pageSize={15}
         pageSizeOptions={PAGE_SIZES}
         onPageChange={updatePage}
         onPageSizeOptionChange={updateRowsPerPage}
-        isNextDisabled={isNextDisabled}
-        isPreviousDisabled={isPreviousDisabled}
       />
       <ul
         // Do not remove the aria-label below, it is used for Hatchways automation.
