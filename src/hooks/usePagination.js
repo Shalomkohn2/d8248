@@ -1,4 +1,4 @@
-export const DOTS = "...";
+export const DOTS = "..."; 
 
 function usePagination({currentPage, totalCount, pageSize}) {
   /*
