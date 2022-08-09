@@ -15,7 +15,7 @@ function Pagination({
   pageSize,
   pageSizeOptions,
   isNextDisabled,
-  isPreviousDisabled
+  isPreviousDisabled,
 }) {
   const paginationRange = usePagination({
     currentPage,
