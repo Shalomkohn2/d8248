@@ -1,9 +1,9 @@
 import "../css/pagination.scss";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import usePagination, { DOTS } from "../hooks/usePagination";
-
 import PropTypes from "prop-types";
 import React from "react";
+import { useMemo } from "react";
 import { nanoid } from "nanoid";
 
 function Pagination({
@@ -17,11 +17,13 @@ function Pagination({
   isPreviousDisabled,
 }) {
 
-  const paginationRange = usePagination({
-    currentPage,
-    totalCount,
-    pageSize,
-  });
+  const paginationRange = useMemo(() => {
+    return usePagination({
+      currentPage,
+      totalCount,
+      pageSize,
+    }) 
+  },[currentPage, pageSize]);
 
   const onNext = () => {
     onPageChange(currentPage + 1);
@@ -98,7 +100,7 @@ function Pagination({
         aria-label="Select page size"
         value={pageSize}
         onChange={(e) => {
-          onPageSizeOptionChange(e.target.value);
+          onPageSizeOptionChange(+e.target.value);
         }}
       >
         {pageSizeOptions.map((size) => (
